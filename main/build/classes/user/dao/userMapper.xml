@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="userSQL">
+	<insert id="write" parameterType="user.bean.UserDTO">
+		insert into member values(
+								  #{name},
+								  #{id},
+								   #{pwd},
+								    #{gender},
+								     #{email1},
+								      #{email2},
+								       #{tel1},
+								        #{tel2},
+								         #{tel3},
+								          #{zipcode},
+								           #{addr1},
+								            #{addr2},
+								             sysdate
+													)
+	</insert>						
+
+	<!-- 로그인 -->
+	<select id="login" parameterType="java.util.Map" resultType="user.bean.UserDTO">
+		select * from member where id=#{id} and pwd=#{pwd}
+	</select>
+	
+	<!-- 중복체크 --> 									<!--알리아스로 명칭member도 읽도록 변경함 위에도 다 변경가능임..  -->
+	<select id="isExistId" parameterType="String" resultType="user">
+		select * from member where id=#{id}
+	</select>
+	
+
+	
+	
+</mapper>
